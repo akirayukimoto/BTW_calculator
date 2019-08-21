@@ -3,6 +3,13 @@
 const app = getApp()
 
 Page({
+  clickMe: function () {
+    //this.setData({ msg: "进入计算器" })
+    //点击后跳转到计算器
+    wx.navigateTo({
+      url: 'calc.wxml',
+    })
+  },
   data: {
     motto: 'BTS World计算器',
     userInfo: {},
