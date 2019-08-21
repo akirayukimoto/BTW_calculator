@@ -1,1 +1,26 @@
 <!--Calc.html-->
+<view class="calc_window">
+  <view class="selection">
+    <view class="selection_title">请选择卡片</view>
+    <picker bindchange="bindPicker1" value="{{index}}" range="{{cards}}" range-key="card_name">
+      <view class="picker">
+        第一张卡：{{cards[index].card_name}}
+      </view>
+    </picker>
+    <picker bindchange="bindPicker2" value="{{index}}" range="{{cards}}" range-key="card_name">
+      <view class="picker">
+        第二张卡：{{cards[index].card_name}}
+      </view>
+    </picker>
+    <picker bindchange="bindPicker3" value="{{index}}" range="{{cards}}" range-key="card_name">
+      <view class="picker">
+        第三张卡：{{cards[index].card_name}}
+      </view>
+    </picker>
+    <picker bindchange="bindPicker4" value="{{index}}" range="{{cards}}" range-key="card_name">
+      <view class="picker">
+        第四张卡：{{cards[index].card_name}}
+      </view>
+    </picker>
+  </view>
+</view>

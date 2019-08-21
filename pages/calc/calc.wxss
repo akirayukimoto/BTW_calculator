@@ -1,1 +1,11 @@
 /* pages/calc/calc.wxss */
+.calc_window{
+  display: flex;
+}
+.selection_title{
+  margin-bottom: 20rpx;
+}
+.selection{
+  margin: 50rpx 0;
+  font-size: 30rpx;
+}

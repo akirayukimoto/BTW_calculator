@@ -1,5 +1,6 @@
 <!--index.wxml-->
 <view class="container">
+  <!--这段可以改了，是原来做登陆用的，如果需要的话剪切到别的地方存起来-->
   <view class="userinfo">
     <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
     <block wx:else>
@@ -7,6 +8,7 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
+  <!--直到这里，中间的部分可以改了然后进行重新设计-->
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>

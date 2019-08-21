@@ -4,7 +4,57 @@ Page({
    * 页面的初始数据
    */
   data: {
-    
+    index: 0,
+    cards: [
+      {
+        id: 0,
+        card_name: "Fake Love SUGA",
+      },
+      {
+        id: 1,
+        card_name: 'Fake Love J-Hope',
+      },
+      {
+        id: 2,
+        card_name: 'Fake Love RM',
+      },
+      {
+        id: 3,
+        card_name: 'Fake Love Jung Kook',
+      }
+    ]
+  },
+
+  /**
+   * bindPicker1: 选择你想要的第一张卡
+   */
+
+  bindPicker1: function(e) {
+    console.log('picker选择名称变为', e.detail.value)
+    this.setData({
+      index:e.detail.value
+    })
+  },
+
+  bindPicker2: function (e) {
+    console.log('picker选择名称变为', e.detail.value)
+    this.setData({
+      index: e.detail.value
+    })
+  },
+
+  bindPicker3: function (e) {
+    console.log('picker选择名称变为', e.detail.value)
+    this.setData({
+      index: e.detail.value
+    })
+  },
+
+  bindPicker4: function (e) {
+    console.log('picker选择名称变为', e.detail.value)
+    this.setData({
+      index: e.detail.value
+    })
   },
 
   /**
