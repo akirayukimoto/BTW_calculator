@@ -5,24 +5,93 @@ var cards = [
   },
   {
     id: 1,
-    card_name: "Fake Love SUGA",
+    //  卡名，记得用中文名称写
+    //  排序方式：按照图鉴（也就是年龄）顺序，先五星录完所有人后再录四星
+    //  这次先每人每星级录一张，共35张。
+    card_name: "原来是美男",
+    //  不好意思第一张卡的名字我就在爆笑dbq
+    //  成员名字记得统一大写
+    member_name:"JIN",
+    //  属性
+    property:"empathy",
+    //  稀有度
+    rarity:5,
+    //  初始属性
+    //  感性
+    empathy: 1980,
+    //  热情
+    passion: 1048,
+    //  体力
+    stamina: 360,
+    //  智慧
+    wisdom: 335,
   },
   {
     id: 2,
-    card_name: 'Fake Love J-Hope',
+    card_name: "键盘上的闵喵喵",
+    member_name: "SUGA",
+    property: "empathy",
+    rarity: 5,
+    empathy: 1800,
+    passion: 1080,
+    stamina: 360,
+    wisdom: 360,
   },
   {
     id: 3,
-    card_name: 'Fake Love RM',
+    card_name: "微笑天使",
+    member_name: "J-HOPE",
+    property: "empathy",
+    rarity: 5,
+    empathy: 1746,
+    passion: 1188,
+    stamina: 335,
+    wisdom: 360,
   },
   {
     id: 4,
-    card_name: 'Fake Love Jung Kook',
+    card_name: "名侦探",
+    member_name: "RM",
+    property: "empathy",
+    rarity: 5,
+    empathy: 1980,
+    passion: 1048,
+    stamina: 360,
+    wisdom: 335,
   },
   {
     id: 5,
-    card_name: '决战时刻'
-  }
+    card_name: "我独自在练习室",
+    member_name: "JIMIN",
+    property: "empathy",
+    rarity: 5,
+    empathy: 1746,
+    passion: 1188,
+    stamina: 335,
+    wisdom: 360,
+  },
+  {
+    id: 6,
+    card_name: "眨眼",
+    member_name: "V",
+    property: "empathy",
+    rarity: 5,
+    empathy: 1800,
+    passion: 1188,
+    stamina: 349,
+    wisdom: 335,
+  },
+  {
+    id: 7,
+    card_name: "国家代表",
+    member_name: "JUNGKOOK",
+    property: "empathy",
+    rarity: 5,
+    empathy: 1674,
+    passion: 1080,
+    stamina: 349,
+    wisdom: 396,
+  },
 ]
 
 var stages = [
