@@ -1,6 +1,12 @@
 <!--Calc.html-->
 <view class="calc_window">
   <view class="selection">
+    <view class="selection_title">请选择关卡</view>
+    <picker bindchange="stagePicker" value="{{stage_index}}" range="{{cur_stages}}">
+      <view class="picker">
+      选择关卡：{{cur_stages[stage_index]}}
+      </view>
+    </picker>
     <view class="selection_title">请选择卡片</view>
     <picker bindchange="bindPicker1" value="{{index_1}}" range="{{cards_1}}" range-key="card_name">
       <view class="picker">
