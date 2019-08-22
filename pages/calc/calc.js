@@ -176,6 +176,12 @@ var stages = [
   '', '6-1', '6-2', '6-4', '6-5', '6-7', '6-8', '6-9', '6-11', '6-12', '6-14', '6-15', '6-17', '6-18', '6-19'
 ]
 
+var level = []
+
+for (var i = 0; i < 50; i++) {
+  level.push(i+1);
+}
+
 Page({
 
   /**
@@ -183,14 +189,18 @@ Page({
    */
 
   data: {
-    index_1: 0,
-    index_2: 0,
-    index_3: 0,
-    index_4: 0,
+    index_1: [0, 0],
+    index_2: [0, 0],
+    index_3: [0, 0],
+    index_4: [0, 0],
     cards_1: JSON.parse(JSON.stringify(cards)),
     cards_2: JSON.parse(JSON.stringify(cards)),
     cards_3: JSON.parse(JSON.stringify(cards)),
     cards_4: JSON.parse(JSON.stringify(cards)),
+    level_1: JSON.parse(JSON.stringify(level)),
+    level_2: JSON.parse(JSON.stringify(level)),
+    level_3: JSON.parse(JSON.stringify(level)),
+    level_4: JSON.parse(JSON.stringify(level)),
     stage_index: 0,
     cur_stages: JSON.parse(JSON.stringify(stages))
   },
