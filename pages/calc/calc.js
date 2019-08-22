@@ -1,19 +1,52 @@
-var cards = [
+// cards数据里面有的地方被我改了
+// member_name改成member_id，对应前一组数组
+// 年龄大小1-7代表每个人
+// 我觉得可能改成属性会好点？森森拜托了OTL
+var cards = [[
+  {
+    id: 1,
+    name: "JIN"
+  }, 
+  {
+    id: 2,
+    name: "SUGA"
+  }, 
+  {
+    id: 3,
+    name: "JHOPE"
+  }, 
+  {
+    id: 4,
+    name: "RM"
+  }, 
+  {
+    id: 5,
+    name: "JIMIN"
+  }, 
+  {
+    id: 6,
+    name: "V"
+  }, 
+  {
+    id: 7,
+    name: "JUNGKOOK"
+  }], [
   {
     id: 0,
-    card_name: "",
+    name: " ",
     rarity: 0,
-    member_name: ""
+    member_id: 0
   },
   {
     id: 1,
     //  卡名，记得用中文名称写
     //  排序方式：按照图鉴（也就是年龄）顺序，先五星录完所有人后再录四星
     //  这次先每人每星级录一张，共35张。
-    card_name: "原来是美男",
+    name: "原来是美男",
     //  不好意思第一张卡的名字我就在爆笑dbq
     //  成员名字记得统一大写
-    member_name:"JIN",
+    //  悲伤尝试，我都改成标号做对应了
+    member_id:1,
     //  属性
     property:"empathy",
     //  稀有度
@@ -30,8 +63,8 @@ var cards = [
   },
   {
     id: 2,
-    card_name: "键盘上的闵喵喵",
-    member_name: "SUGA",
+    name: "键盘上的闵喵喵",
+    member_id: 2,
     property: "empathy",
     rarity: 5,
     empathy: 1800,
@@ -41,8 +74,8 @@ var cards = [
   },
   {
     id: 3,
-    card_name: "微笑天使",
-    member_name: "J-HOPE",
+    name: "微笑天使",
+    member_id: 3,
     property: "empathy",
     rarity: 5,
     empathy: 1746,
@@ -52,8 +85,8 @@ var cards = [
   },
   {
     id: 4,
-    card_name: "名侦探",
-    member_name: "RM",
+    name: "名侦探",
+    member_id: 4,
     property: "empathy",
     rarity: 5,
     empathy: 1980,
@@ -63,8 +96,8 @@ var cards = [
   },
   {
     id: 5,
-    card_name: "我独自在练习室",
-    member_name: "JIMIN",
+    name: "我独自在练习室",
+    member_id: 5,
     property: "empathy",
     rarity: 5,
     empathy: 1746,
@@ -74,8 +107,8 @@ var cards = [
   },
   {
     id: 6,
-    card_name: "眨眼",
-    member_name: "V",
+    name: "眨眼",
+    member_id: 6,
     property: "empathy",
     rarity: 5,
     empathy: 1800,
@@ -85,8 +118,8 @@ var cards = [
   },
   {
     id: 7,
-    card_name: "国家代表",
-    member_name: "JUNGKOOK",
+    name: "国家代表",
+    member_id: 7,
     property: "empathy",
     rarity: 5,
     empathy: 1674,
@@ -97,8 +130,8 @@ var cards = [
   // 接下来是四星
   {
     id: 8,
-    card_name: "颜值爆表",  //草
-    member_name: "JIN",
+    name: "颜值爆表",  //草
+    member_id: 1,
     property: "empathy",
     rarity: 4,
     empathy: 1056,
@@ -108,8 +141,8 @@ var cards = [
   },
   {
     id: 9,
-    card_name: "节拍器",
-    member_name: "SUGA",
+    name: "节拍器",
+    member_id: 2,
     property: "empathy",
     rarity: 4,
     empathy: 893,
@@ -119,8 +152,8 @@ var cards = [
   },
   {
     id: 10,
-    card_name: "漂亮漂亮",
-    member_name: "J-HOPE",
+    name: "漂亮漂亮",
+    member_id: 3,
     property: "empathy",
     rarity: 4,
     empathy: 1242,
@@ -130,8 +163,8 @@ var cards = [
   },
   {
     id: 11,
-    card_name: "夏洛克Namjun",
-    member_name: "RM",
+    name: "夏洛克Namjun",
+    member_id: 4,
     property: "wisdom",
     rarity: 4,
     empathy: 1242,
@@ -141,8 +174,8 @@ var cards = [
   },
   {
     id: 12,
-    card_name: "歌单",
-    member_name: "JIMIN",
+    name: "歌单",
+    member_id: 5,
     property: "empathy",
     rarity: 4,
     empathy: 1280,
@@ -152,8 +185,8 @@ var cards = [
   },
   {
     id: 13,
-    card_name: "视觉冲击",
-    member_name: "V",
+    name: "视觉冲击",
+    member_id: 6,
     property: "empathy",
     rarity: 4,
     empathy: 1280,
@@ -163,8 +196,8 @@ var cards = [
   },
   {
     id: 14,
-    card_name: "跆拳少年",
-    member_name: "JUNGKOOK",
+    name: "跆拳少年",
+    member_id: 7,
     property: "empathy",
     rarity: 4,
     empathy: 1600,
@@ -175,8 +208,8 @@ var cards = [
   //  三星
   {
     id: 15,
-    card_name: "想你",  //所以说金硕珍卡牌的名字为什么都这么诡异
-    member_name: "JIN",
+    name: "想你",  //所以说金硕珍卡牌的名字为什么都这么诡异
+    member_id: 1,
     property: "passion",
     rarity: 3,
     empathy: 815,
@@ -186,8 +219,8 @@ var cards = [
   },
   {
     id: 16,
-    card_name: "红帽子",
-    member_name: "SUGA",
+    name: "红帽子",
+    member_id: 2,
     property: "wisdom",
     rarity: 3,
     empathy: 140,
@@ -197,19 +230,19 @@ var cards = [
   },
   {
     id: 17,
-    card_name: "干得漂亮",
-    member_name: "J-HOPE",
+    name: "干得漂亮",
+    member_id: 3,
     property: "empathy",
     rarity: 3,
     empathy: 770,
     passion: 651,
     stamina: 700,
-    wisdom: 679,          //这张卡数值有点惨
+    wisdom: 679,          //这张卡数值有点惨，我前几天还喂了这张好像？
   },
   {
     id: 18,
-    card_name: "其他想法",
-    member_name: "RM",
+    name: "其他想法",
+    member_id: 4,
     property: "empathy",
     rarity: 3,
     empathy: 1232,
@@ -219,8 +252,8 @@ var cards = [
   },
   {
     id: 19,
-    card_name: "哼",      //唔啾啾我的宝贝wuwuwuuuwuuw
-    member_name: "JIMIN",
+    name: "哼",      //唔啾啾我的宝贝wuwuwuuuwuuw
+    member_id: 5,
     property: "wisdom",
     rarity: 3,
     empathy: 140,
@@ -230,8 +263,8 @@ var cards = [
   },
   {
     id: 20,
-    card_name: "倾情演唱",
-    member_name: "V",
+    name: "倾情演唱",
+    member_id: 6,
     property: "wisdom",
     rarity: 3,
     empathy: 272,
@@ -241,8 +274,8 @@ var cards = [
   },
   {
     id: 21,
-    card_name: "那边的你",
-    member_name: "JUNGKOOK",
+    name: "那边的你", // 草为什么我读这个标题的时候脑子里出来日语
+    member_id: 7,
     property: "stamina",
     rarity: 3,
     empathy: 840,
@@ -253,8 +286,8 @@ var cards = [
   //  二星
   {
     id: 22,
-    card_name: "夸奖我",  //这张卡真的好可爱i cant
-    member_name: "JIN",
+    name: "夸奖我",  //这张卡真的好可爱i cant
+    member_id: 1,
     property: "wisdom",
     rarity: 2,
     empathy: 558,
@@ -264,8 +297,8 @@ var cards = [
   },
   {
     id: 23,
-    card_name: "警告你",  // 请问是在跟上一张卡对话吗
-    member_name: "SUGA",
+    name: "警告你",  // 请问是在跟上一张卡对话吗
+    member_id: 2,
     property: "wisdom",
     rarity: 2,
     empathy: 670,
@@ -275,9 +308,9 @@ var cards = [
   },
   {
     id: 24,
-    card_name: "晕晕乎乎",  //  大型七人男子连续剧
-    member_name: "J-HOPE",
-    property: "wisdom",   //  聪明小芙
+    name: "晕晕乎乎",  //  大型七人男子连续剧
+    member_id: 3,
+    property: "wisdom",   //  聪明小芙（瑛：改到这里我差点笑死）
     rarity: 2,
     empathy: 466,
     passion: 720,
@@ -286,8 +319,8 @@ var cards = [
   },
   {
     id: 25,
-    card_name: "酒窝",
-    member_name: "RM",
+    name: "酒窝",
+    member_id: 4,
     property: "stamina",
     rarity: 2,
     empathy: 720,
@@ -297,8 +330,8 @@ var cards = [
   },
   {
     id: 26,
-    card_name: "好久不见",
-    member_name: "JIMIN",
+    name: "好久不见",
+    member_id: 5,
     property: "wisdom",
     rarity: 2,
     empathy: 698,
@@ -308,8 +341,8 @@ var cards = [
   },
   {
     id: 27,
-    card_name: "淘气鬼",
-    member_name: "V",
+    name: "淘气鬼",
+    member_id: 6,
     property: "passion",
     rarity: 2,
     empathy: 480,
@@ -319,8 +352,8 @@ var cards = [
   },
   {
     id: 28,
-    card_name: "2年级",
-    member_name: "JUNGKOOK",
+    name: "2年级",
+    member_id: 7,
     property: "empathy",
     rarity: 2,
     empathy: 792,
@@ -331,8 +364,8 @@ var cards = [
   // 一星
   {
     id: 29,
-    card_name: "我反对",
-    member_name: "JIN",
+    name: "我反对",
+    member_id: 1,
     property: "empathy",
     rarity: 1,
     empathy: 550,
@@ -342,8 +375,8 @@ var cards = [
   },
   {
     id: 30,
-    card_name: "嗨",
-    member_name: "SUGA",
+    name: "嗨", //  每次卡bug都能看见的卡名
+    member_id: 2, 
     property: "wisdom",
     rarity: 1,
     empathy: 448,
@@ -353,8 +386,8 @@ var cards = [
   },
   {
     id: 31,
-    card_name: "有信心",
-    member_name: "J-HOPE",
+    name: "有信心",
+    member_id: 3,
     property: "stamina",
     rarity: 1,
     empathy: 400,
@@ -364,8 +397,8 @@ var cards = [
   },
   {
     id: 32,
-    card_name: "很合我意",
-    member_name: "RM",
+    name: "很合我意",
+    member_id: 4,
     property: "passion",
     rarity: 1,
     empathy: 372,
@@ -375,8 +408,8 @@ var cards = [
   },
   {
     id: 33,
-    card_name: "无法取代",
-    member_name: "JIMIN",
+    name: "无法取代",
+    member_id: 5,
     property: "passion",
     rarity: 1,
     empathy: 400,
@@ -386,8 +419,8 @@ var cards = [
   },
   {
     id: 34,
-    card_name: "歪头",
-    member_name: "V",
+    name: "歪头",
+    member_id: 6,
     property: "stamina",
     rarity: 1,
     empathy: 400,
@@ -397,8 +430,8 @@ var cards = [
   },
   {
     id: 35,
-    card_name: "砰砰乱跳",
-    member_name: "JUNGKOOK",
+    name: "砰砰乱跳",
+    member_id: 7,
     property: "empathy",
     rarity: 1,
     empathy: 660,
@@ -406,7 +439,7 @@ var cards = [
     stamina: 400,
     wisdom: 372,
   },
-]
+]]
 
 var stages = [
   '', '6-1', '6-2', '6-4', '6-5', '6-7', '6-8', '6-9', '6-11', '6-12', '6-14', '6-15', '6-17', '6-18', '6-19'
@@ -418,14 +451,6 @@ for (var i = 0; i < 51; i++) {
   level.push(i);
 }
 
-var card_info = [[0, 1, 2, 3, 4, 5], ["member", "JIN", "SUGA", "JHOPE", "RM", "JIMIN", "V", "JUNGKOOK"], []]
-
-for (var i = 0; i < 36; i++) {
-//  card_info[0].push(cards[i].rarity)
-//  card_info[1].push(cards[i].member_name)
-  card_info[2].push(cards[i].card_name)
-}
-
 Page({
 
   /**
@@ -433,34 +458,56 @@ Page({
    */
 
   data: {
-    index_1: [0,0,0],
-    index_2: [0,0,0],
-    index_3: [0,0,0],
-    index_4: [0,0,0],
 
-    cards_1: JSON.parse(JSON.stringify(cards)),
-    cards_2: JSON.parse(JSON.stringify(cards)),
-    cards_3: JSON.parse(JSON.stringify(cards)),
-    cards_4: JSON.parse(JSON.stringify(cards)),
-
-    info_1: JSON.parse(JSON.stringify(card_info)),
-    info_2: JSON.parse(JSON.stringify(card_info)),
-    info_3: JSON.parse(JSON.stringify(card_info)),
-    info_4: JSON.parse(JSON.stringify(card_info)),
-
-    level_1: JSON.parse(JSON.stringify(level)),
-    level_2: JSON.parse(JSON.stringify(level)),
-    level_3: JSON.parse(JSON.stringify(level)),
-    level_4: JSON.parse(JSON.stringify(level)),
+    multi_show_1: [],
+    cards_1: [],
+    multi_array_1: [],
+    index_1: [],
 
     stage_index: 0,
     cur_stages: JSON.parse(JSON.stringify(stages))
   },
 
   /**
-   * stagePicker: 选择你正在面对的关卡
-   */
-  stagePicker: function(e) {
+ * 生命周期函数--监听页面加载
+ */
+  onLoad: function (options) {
+    let data = {
+      multi_show_1: this.data.multi_show_1,
+      cards_1: this.data.cards_1,
+      multi_array_1: this.data.multi_array_1,
+      index_1: this.data.index_1
+    }
+
+    data.cards_1 = JSON.parse(JSON.stringify(cards))
+
+    data.multi_show_1 = data.cards_1.map((item, index) => {
+      // console.log(index)
+      // 现在可以根据成员选卡片
+      // 我觉得更好的是根据属性选卡片
+      if (index > 0) {
+        item = item.filter(i => i.member_id === data.cards_1[index - 1][0].id)
+      }
+      return item
+    })
+
+    data.multi_array_1 = data.multi_show_1.map(item => {
+//      console.log([item.rarity, item.member_id, item.name])
+      item = item.map(i => i.name)
+      //return [item.rarity, item.member_id, item.name]
+      return item
+    })
+
+//    data.index_1 = [0, 0, 0];
+//    console.log(data.index_1)
+
+    this.setData(data)
+  },
+
+  /**
+ * stagePicker: 选择你正在面对的关卡
+ */
+  stagePicker: function (e) {
     console.log('选择的关卡是：', this.data.cur_stages[e.detail.value])
     this.setData({
       stage_index: e.detail.value
@@ -471,89 +518,44 @@ Page({
    * bindPicker: 选择你想要用来计算的卡
    */
 
-  bindPicker1: function(e) {
-    var card = this.data.cards_1,
-      index_1 = this.data.index_1,
-      info_1 = this.data.info_1;
+  bindPicker1: function (e) {
+    //    var card = JSON.parse(JSON.stringify(this.data.cards_1)),
+    //      index_1 = JSON.parse(JSON.stringify(this.data.info_1)),
+    //      info_1 = JSON.parse(JSON.stringify(this.data.info_1));
+    console.log('picker 1 数值改变为：', e.detail.value)
 
     this.setData({
       index_1: e.detail.value
     })
-//    console.log('稀有度为: ', info_1[0][index[0]])
-//    console.log('成员为: ', info_1[1][index[1]])
+    //    console.log('稀有度为: ', info_1[0][index[0]])
+    //    console.log('成员为: ', info_1[1][index[1]])
   },
 
-  bindColumnChange1: function(e) {
-    var card = this.data.cards_1;
-    var index = this.data.index_1;
-    var info = this.data.info_1;
-
-//    console.log(e.detail.column)
-
-    index[e.detail.column] = e.detail.value;
-
-    var search_card_name = () => {
-      var new_card_name = [];
-      for (var i = 0; i < card.length; i++) {
-        if (card[i].rarity == info[0][index[0]]) {
-          if(card[i].member_name == info[1][index[1]]) {
-            new_card_name.push(card[i].card_name)
-          }
-        }
-      };
-//      console.log(new_card_name);
-      info[2] = new_card_name;
+  bindColumnChange1: function (e) {
+    console.log(e.detail);
+    let data = {
+      multi_show_1: this.data.multi_show_1,
+//      cards_1: this.data.cards_1,
+      multi_array_1: this.data.multi_array_1,
+      index_1: this.data.index_1
     }
+    //    var card = this.data.cards_1;
+    //    var index = this.data.index_1;
+    //    var info = this.data.info_1;
 
-    switch(e.detail.column) {
-      case 0:
-        index[1] = 0;
-        index[2] = 0;
-        search_card_name();
-        break;
-      case 1:
-        index[2] = 0;
-        search_card_name();
-        break;
-    }
+    //switch (e.detail.column) {
+      //case 0:
+        //        index[1] = 0;
+        //        index[2] = 0;
+        //        search_name();
+        //break;
+      //case 1:
+        //        index[2] = 0;
+        //        search_name();
+        //break;
+    //}
 
-    this.setData({
-      info_1: info,
-      index_1: e.detail.value,
-
-    })
-  },
-
-  bindPicker2: function (e) {
-    console.log('picker 2选择名称变为', this.data.cards_2[e.detail.value].card_name)
-    this.setData({
-      index_2: e.detail.value
-    })
-  },
-
-  bindPicker3: function (e) {
-    console.log('picker 3选择名称变为', this.data.cards_3[e.detail.value].card_name)
-    this.setData({
-      index_3: e.detail.value
-    })
-  },
-
-  bindPicker4: function (e) {
-    console.log('picker 4选择名称变为', this.data.cards_4[e.detail.value].card_name)
-    this.setData({
-      index_4: e.detail.value
-    })
-  },
-
-  /**
-   * 
-   */
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-    
+    this.setData(data)
   },
 
   /**
