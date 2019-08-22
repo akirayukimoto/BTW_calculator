@@ -1,35 +1,27 @@
 // cards数据里面有的地方被我改了
 // member_name改成member_id，对应前一组数组
-// 年龄大小1-7代表每个人
+// 2019/08/22 16:40更新：改了，改成属性了
+// 1 - 感性
+// 2 - 热情
+// 3 - 体力
+// 4 - 智慧
 // 我觉得可能改成属性会好点？森森拜托了OTL
 var cards = [[
   {
     id: 1,
-    name: "JIN"
+    name: "empathy"
   }, 
   {
     id: 2,
-    name: "SUGA"
+    name: "passion"
   }, 
   {
     id: 3,
-    name: "JHOPE"
+    name: "stamina"
   }, 
   {
     id: 4,
-    name: "RM"
-  }, 
-  {
-    id: 5,
-    name: "JIMIN"
-  }, 
-  {
-    id: 6,
-    name: "V"
-  }, 
-  {
-    id: 7,
-    name: "JUNGKOOK"
+    name: "wisdom"
   }], [
   {
     id: 0,
@@ -48,7 +40,7 @@ var cards = [[
     //  悲伤尝试，我都改成标号做对应了
     member_id:1,
     //  属性
-    property:"empathy",
+    property:1,
     //  稀有度
     rarity:5,
     //  初始属性
@@ -65,7 +57,7 @@ var cards = [[
     id: 2,
     name: "键盘上的闵喵喵",
     member_id: 2,
-    property: "empathy",
+    property: 1,
     rarity: 5,
     empathy: 1800,
     passion: 1080,
@@ -76,7 +68,7 @@ var cards = [[
     id: 3,
     name: "微笑天使",
     member_id: 3,
-    property: "empathy",
+    property: 1,
     rarity: 5,
     empathy: 1746,
     passion: 1188,
@@ -87,7 +79,7 @@ var cards = [[
     id: 4,
     name: "名侦探",
     member_id: 4,
-    property: "empathy",
+    property: 1,
     rarity: 5,
     empathy: 1980,
     passion: 1048,
@@ -98,7 +90,7 @@ var cards = [[
     id: 5,
     name: "我独自在练习室",
     member_id: 5,
-    property: "empathy",
+    property: 1,
     rarity: 5,
     empathy: 1746,
     passion: 1188,
@@ -109,7 +101,7 @@ var cards = [[
     id: 6,
     name: "眨眼",
     member_id: 6,
-    property: "empathy",
+    property: 1,
     rarity: 5,
     empathy: 1800,
     passion: 1188,
@@ -120,7 +112,7 @@ var cards = [[
     id: 7,
     name: "国家代表",
     member_id: 7,
-    property: "empathy",
+    property: 1,
     rarity: 5,
     empathy: 1674,
     passion: 1080,
@@ -132,7 +124,7 @@ var cards = [[
     id: 8,
     name: "颜值爆表",  //草
     member_id: 1,
-    property: "empathy",
+    property: 1,
     rarity: 4,
     empathy: 1056,
     passion: 893,
@@ -143,7 +135,7 @@ var cards = [[
     id: 9,
     name: "节拍器",
     member_id: 2,
-    property: "empathy",
+    property: 1,
     rarity: 4,
     empathy: 893,
     passion: 640,
@@ -154,7 +146,7 @@ var cards = [[
     id: 10,
     name: "漂亮漂亮",
     member_id: 3,
-    property: "empathy",
+    property: 1,
     rarity: 4,
     empathy: 1242,
     passion: 352,
@@ -165,7 +157,7 @@ var cards = [[
     id: 11,
     name: "夏洛克Namjun",
     member_id: 4,
-    property: "wisdom",
+    property: 4,
     rarity: 4,
     empathy: 1242,
     passion: 320,
@@ -176,7 +168,7 @@ var cards = [[
     id: 12,
     name: "歌单",
     member_id: 5,
-    property: "empathy",
+    property: 1,
     rarity: 4,
     empathy: 1280,
     passion: 320,
@@ -187,7 +179,7 @@ var cards = [[
     id: 13,
     name: "视觉冲击",
     member_id: 6,
-    property: "empathy",
+    property: 1,
     rarity: 4,
     empathy: 1280,
     passion: 352,
@@ -198,7 +190,7 @@ var cards = [[
     id: 14,
     name: "跆拳少年",
     member_id: 7,
-    property: "empathy",
+    property: 1,
     rarity: 4,
     empathy: 1600,
     passion: 352,
@@ -210,7 +202,7 @@ var cards = [[
     id: 15,
     name: "想你",  //所以说金硕珍卡牌的名字为什么都这么诡异
     member_id: 1,
-    property: "passion",
+    property: 2,
     rarity: 3,
     empathy: 815,
     passion: 1540,
@@ -221,7 +213,7 @@ var cards = [[
     id: 16,
     name: "红帽子",
     member_id: 2,
-    property: "wisdom",
+    property: 4,
     rarity: 3,
     empathy: 140,
     passion: 924,
@@ -232,18 +224,18 @@ var cards = [[
     id: 17,
     name: "干得漂亮",
     member_id: 3,
-    property: "empathy",
+    property: 1,
     rarity: 3,
     empathy: 770,
     passion: 651,
     stamina: 700,
-    wisdom: 679,          //这张卡数值有点惨，我前几天还喂了这张好像？
+    wisdom: 679,          //这张卡数值有点惨（瑛：我前几天还喂了这张好像？）
   },
   {
     id: 18,
     name: "其他想法",
     member_id: 4,
-    property: "empathy",
+    property: 1,
     rarity: 3,
     empathy: 1232,
     passion: 272,
@@ -254,7 +246,7 @@ var cards = [[
     id: 19,
     name: "哼",      //唔啾啾我的宝贝wuwuwuuuwuuw
     member_id: 5,
-    property: "wisdom",
+    property: 4,
     rarity: 3,
     empathy: 140,
     passion: 140,
@@ -265,7 +257,7 @@ var cards = [[
     id: 20,
     name: "倾情演唱",
     member_id: 6,
-    property: "wisdom",
+    property: 4,
     rarity: 3,
     empathy: 272,
     passion: 280,
@@ -276,7 +268,7 @@ var cards = [[
     id: 21,
     name: "那边的你", // 草为什么我读这个标题的时候脑子里出来日语
     member_id: 7,
-    property: "stamina",
+    property: 3,
     rarity: 3,
     empathy: 840,
     passion: 521,
@@ -288,7 +280,7 @@ var cards = [[
     id: 22,
     name: "夸奖我",  //这张卡真的好可爱i cant
     member_id: 1,
-    property: "wisdom",
+    property: 4,
     rarity: 2,
     empathy: 558,
     passion: 600,
@@ -299,7 +291,7 @@ var cards = [[
     id: 23,
     name: "警告你",  // 请问是在跟上一张卡对话吗
     member_id: 2,
-    property: "wisdom",
+    property: 4, //  属性还一样，突然觉sin真的太草
     rarity: 2,
     empathy: 670,
     passion: 480,
@@ -310,7 +302,7 @@ var cards = [[
     id: 24,
     name: "晕晕乎乎",  //  大型七人男子连续剧
     member_id: 3,
-    property: "wisdom",   //  聪明小芙（瑛：改到这里我差点笑死）
+    property: 4,   //  聪明小芙（瑛：改到这里我差点笑死）
     rarity: 2,
     empathy: 466,
     passion: 720,
@@ -321,7 +313,7 @@ var cards = [[
     id: 25,
     name: "酒窝",
     member_id: 4,
-    property: "stamina",
+    property: 3,
     rarity: 2,
     empathy: 720,
     passion: 446,
@@ -332,7 +324,7 @@ var cards = [[
     id: 26,
     name: "好久不见",
     member_id: 5,
-    property: "wisdom",
+    property: 4,
     rarity: 2,
     empathy: 698,
     passion: 480,
@@ -343,7 +335,7 @@ var cards = [[
     id: 27,
     name: "淘气鬼",
     member_id: 6,
-    property: "passion",
+    property: 2,
     rarity: 2,
     empathy: 480,
     passion: 720,
@@ -354,7 +346,7 @@ var cards = [[
     id: 28,
     name: "2年级",
     member_id: 7,
-    property: "empathy",
+    property: 1,
     rarity: 2,
     empathy: 792,
     passion: 670,
@@ -366,7 +358,7 @@ var cards = [[
     id: 29,
     name: "我反对",
     member_id: 1,
-    property: "empathy",
+    property: 1,
     rarity: 1,
     empathy: 550,
     passion: 485,
@@ -377,7 +369,7 @@ var cards = [[
     id: 30,
     name: "嗨", //  每次卡bug都能看见的卡名
     member_id: 2, 
-    property: "wisdom",
+    property: 4,
     rarity: 1,
     empathy: 448,
     passion: 420,
@@ -388,7 +380,7 @@ var cards = [[
     id: 31,
     name: "有信心",
     member_id: 3,
-    property: "stamina",
+    property: 3,
     rarity: 1,
     empathy: 400,
     passion: 600,
@@ -399,7 +391,7 @@ var cards = [[
     id: 32,
     name: "很合我意",
     member_id: 4,
-    property: "passion",
+    property: 2,
     rarity: 1,
     empathy: 372,
     passion: 660,
@@ -410,7 +402,7 @@ var cards = [[
     id: 33,
     name: "无法取代",
     member_id: 5,
-    property: "passion",
+    property: 2,
     rarity: 1,
     empathy: 400,
     passion: 660,
@@ -421,7 +413,7 @@ var cards = [[
     id: 34,
     name: "歪头",
     member_id: 6,
-    property: "stamina",
+    property: 3,
     rarity: 1,
     empathy: 400,
     passion: 558,
@@ -432,7 +424,7 @@ var cards = [[
     id: 35,
     name: "砰砰乱跳",
     member_id: 7,
-    property: "empathy",
+    property: 1,
     rarity: 1,
     empathy: 660,
     passion: 582,
@@ -449,6 +441,14 @@ var level = []
 
 for (var i = 0; i < 51; i++) {
   level.push(i);
+}
+
+/**
+ * rarity_sort: 将列里的outcome按照稀有度排序
+ */
+
+function rarity_sort(x, y) {
+  return x.rarity - y.rarity
 }
 
 Page({
@@ -483,23 +483,17 @@ Page({
 
     data.multi_show_1 = data.cards_1.map((item, index) => {
       // console.log(index)
-      // 现在可以根据成员选卡片
-      // 我觉得更好的是根据属性选卡片
+      // 现在可以根据属性选卡片
       if (index > 0) {
-        item = item.filter(i => i.member_id === data.cards_1[index - 1][0].id)
+        item = item.filter(i => i.property === data.cards_1[index - 1][0].id)
       }
       return item
     })
 
     data.multi_array_1 = data.multi_show_1.map(item => {
-//      console.log([item.rarity, item.member_id, item.name])
       item = item.map(i => i.name)
-      //return [item.rarity, item.member_id, item.name]
       return item
     })
-
-//    data.index_1 = [0, 0, 0];
-//    console.log(data.index_1)
 
     this.setData(data)
   },
@@ -515,48 +509,46 @@ Page({
   },
 
   /**
-   * bindPicker: 选择你想要用来计算的卡
+   * bindPicker: 选择一张你想要用来计算的卡
    */
 
   bindPicker1: function (e) {
-    //    var card = JSON.parse(JSON.stringify(this.data.cards_1)),
-    //      index_1 = JSON.parse(JSON.stringify(this.data.info_1)),
-    //      info_1 = JSON.parse(JSON.stringify(this.data.info_1));
     console.log('picker 1 数值改变为：', e.detail.value)
 
     this.setData({
       index_1: e.detail.value
     })
-    //    console.log('稀有度为: ', info_1[0][index[0]])
-    //    console.log('成员为: ', info_1[1][index[1]])
   },
 
   bindColumnChange1: function (e) {
-    console.log(e.detail);
+    console.log('修改的列：', e.detail.column, '值为：', e.detail.value);
     let data = {
       multi_show_1: this.data.multi_show_1,
 //      cards_1: this.data.cards_1,
       multi_array_1: this.data.multi_array_1,
       index_1: this.data.index_1
     }
-    //    var card = this.data.cards_1;
-    //    var index = this.data.index_1;
-    //    var info = this.data.info_1;
+    data.index_1[e.detail.column] = e.detail.value;
+    //  改变前一列之后后面会重置到第0项
+    for (let i = e.detail.column; i < data.index_1.length - 1; i++) {
+      data.index_1[i + 1] = 0;
+    }
 
-    //switch (e.detail.column) {
-      //case 0:
-        //        index[1] = 0;
-        //        index[2] = 0;
-        //        search_name();
-        //break;
-      //case 1:
-        //        index[2] = 0;
-        //        search_name();
-        //break;
-    //}
+    // 更新第二列卡名
+    let arr = this.data.cards_1;
+    arr.sort(rarity_sort);
+    for (let i = e.detail.column; i < data.index_1.length - 1; i++) {
+      data.multi_show_1[i+1] = arr[i+1].filter(item => item.property == data.multi_show_1[i][data.index_1[i]].id);
+//      data.multi_show_1[i+1].sort(rarity_sort);
+      data.multi_array_1[i+1] = data.multi_show_1[i+1].map(i => i.name);
+    }
 
     this.setData(data)
   },
+
+
+
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
