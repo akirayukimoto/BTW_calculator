@@ -8,9 +8,18 @@
       </view>
     </picker>
     <view class="selection_title">请选择卡片</view>
-    <picker bindchange="bindPicker1" value="{{index_1}}" range="{{cards_1}}" range-key="card_name">
+    <picker 
+    mode="multiSelector" 
+    bindchange="bindPicker1" 
+    bindcolumnchange="bindColumnChange1" 
+    value="{{index_1}}" 
+    range="{{info_1}}"
+    >
       <view class="picker">
-        第一张卡：{{cards_1[index_1[0]].card_name}}, {{level_1[index_1[1]]}}
+
+        第一张卡：
+        {{info_1[0][index_1[0]]}},{{info_1[1][index_1[1]]}},{{info_1[2][index_1[2]]}}
+
       </view>
     </picker>
     <picker bindchange="bindPicker2" value="{{index_2}}" range="{{cards_2}}" range-key="card_name">

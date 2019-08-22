@@ -1,7 +1,9 @@
 var cards = [
   {
     id: 0,
-    card_name: ''
+    card_name: "",
+    rarity: 0,
+    member_name: ""
   },
   {
     id: 1,
@@ -412,8 +414,16 @@ var stages = [
 
 var level = []
 
-for (var i = 0; i < 50; i++) {
-  level.push(i+1);
+for (var i = 0; i < 51; i++) {
+  level.push(i);
+}
+
+var card_info = [[0, 1, 2, 3, 4, 5], ["member", "JIN", "SUGA", "JHOPE", "RM", "JIMIN", "V", "JUNGKOOK"], []]
+
+for (var i = 0; i < 36; i++) {
+//  card_info[0].push(cards[i].rarity)
+//  card_info[1].push(cards[i].member_name)
+  card_info[2].push(cards[i].card_name)
 }
 
 Page({
@@ -423,18 +433,26 @@ Page({
    */
 
   data: {
-    index_1: [0, 0],
-    index_2: [0, 0],
-    index_3: [0, 0],
-    index_4: [0, 0],
+    index_1: [0,0,0],
+    index_2: [0,0,0],
+    index_3: [0,0,0],
+    index_4: [0,0,0],
+
     cards_1: JSON.parse(JSON.stringify(cards)),
     cards_2: JSON.parse(JSON.stringify(cards)),
     cards_3: JSON.parse(JSON.stringify(cards)),
     cards_4: JSON.parse(JSON.stringify(cards)),
+
+    info_1: JSON.parse(JSON.stringify(card_info)),
+    info_2: JSON.parse(JSON.stringify(card_info)),
+    info_3: JSON.parse(JSON.stringify(card_info)),
+    info_4: JSON.parse(JSON.stringify(card_info)),
+
     level_1: JSON.parse(JSON.stringify(level)),
     level_2: JSON.parse(JSON.stringify(level)),
     level_3: JSON.parse(JSON.stringify(level)),
     level_4: JSON.parse(JSON.stringify(level)),
+
     stage_index: 0,
     cur_stages: JSON.parse(JSON.stringify(stages))
   },
@@ -454,9 +472,55 @@ Page({
    */
 
   bindPicker1: function(e) {
-    console.log('picker 1选择名称变为', this.data.cards_1[e.detail.value].card_name)
+    var card = this.data.cards_1,
+      index_1 = this.data.index_1,
+      info_1 = this.data.info_1;
+
     this.setData({
       index_1: e.detail.value
+    })
+//    console.log('稀有度为: ', info_1[0][index[0]])
+//    console.log('成员为: ', info_1[1][index[1]])
+  },
+
+  bindColumnChange1: function(e) {
+    var card = this.data.cards_1;
+    var index = this.data.index_1;
+    var info = this.data.info_1;
+
+//    console.log(e.detail.column)
+
+    index[e.detail.column] = e.detail.value;
+
+    var search_card_name = () => {
+      var new_card_name = [];
+      for (var i = 0; i < card.length; i++) {
+        if (card[i].rarity == info[0][index[0]]) {
+          if(card[i].member_name == info[1][index[1]]) {
+            new_card_name.push(card[i].card_name)
+          }
+        }
+      };
+//      console.log(new_card_name);
+      info[2] = new_card_name;
+    }
+
+    switch(e.detail.column) {
+      case 0:
+        index[1] = 0;
+        index[2] = 0;
+        search_card_name();
+        break;
+      case 1:
+        index[2] = 0;
+        search_card_name();
+        break;
+    }
+
+    this.setData({
+      info_1: info,
+      index_1: e.detail.value,
+
     })
   },
 
