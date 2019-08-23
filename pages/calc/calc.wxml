@@ -22,7 +22,11 @@
 
       </view>
     </picker>
-
+    <picker bindchange="levelPicker1" value="{{level_index_1}}" range="{{level_1}}">
+      <view class="picker">
+      第一张卡的等级：{{level_1[level_index_1]}}
+      </view>
+    </picker>
     <picker 
     mode="multiSelector" 
     bindchange="bindPicker2" 
