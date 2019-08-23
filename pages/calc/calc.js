@@ -9,6 +9,7 @@
 
 var cards_info = require('../../data/cards_info.js')
 var stage_info = require('../../data/stage_info.js')
+var stage_equi = require('../../data/stage_calc.js')
 
 var cards = [[
   {
@@ -303,8 +304,12 @@ Page({
     })
   },
 
-  /**
-   * companyPicker: 选择公司等级
+   /**
+   * companyPicker: 用来选择公司属性的滑轮
+   * 1 - 感性 empathy
+   * 2 - 热情 passion
+   * 3 - 体力 stamina
+   * 4 - 智慧 wisdom
    */
 
   companyPicker1: function(e) {
@@ -480,14 +485,6 @@ Page({
 
     this.setData(data)
   },
-
-  /**
-   * companyPicker: 用来选择公司属性的滑轮
-   * 1 - 感性 empathy
-   * 2 - 热情 passion
-   * 3 - 体力 stamina
-   * 4 - 智慧 wisdom
-   */
 
   /**
    * 生命周期函数--监听页面初次渲染完成
