@@ -194,6 +194,27 @@ Page({
     })
   },
 
+  levelPicker2: function (e) {
+    console.log('第二张卡的等级是： ', this.data.level_2[e.detail.value])
+    this.setData({
+      level_index_2: e.detail.value
+    })
+  },
+
+  levelPicker3: function (e) {
+    console.log('第三张卡的等级是： ', this.data.level_3[e.detail.value])
+    this.setData({
+      level_index_3: e.detail.value
+    })
+  },
+
+  levelPicker4: function (e) {
+    console.log('第一张卡的等级是： ', this.data.level_4[e.detail.value])
+    this.setData({
+      level_index_4: e.detail.value
+    })
+  },
+
   /**
    * bindPicker: 选择一张你想要用来计算的卡
    */
