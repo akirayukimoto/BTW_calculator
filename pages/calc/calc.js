@@ -8,6 +8,7 @@
 // 我觉得可能改成属性会好点？森森拜托了OTL
 
 var cards_info = require('../../data/cards_info.js')
+var stage_info = require('../../data/stage_info.js')
 
 var cards = [[
   {
@@ -26,10 +27,33 @@ var cards = [[
     id: 4,
     name: "wisdom"
   }], cards_info.cards_info]
-  
-var stages = [
-  '', '6-1', '6-2', '6-4', '6-5', '6-7', '6-8', '6-9', '6-11', '6-12', '6-14', '6-15', '6-17', '6-18', '6-19'
-]
+
+var stage_bar = [[
+  {
+    id: 1,
+    name: "一"
+  },
+  {
+    id: 2,
+    name: "二"
+  },
+  {
+    id: 3,
+    name: "三"
+  },
+  {
+    id: 4,
+    name: "四"
+  },
+  {
+    id: 5,
+    name: "五"
+  },
+  {
+    id: 6,
+    name: "六"
+  }
+], stage_info.stage_info]
 
 var level = []
 
@@ -84,8 +108,25 @@ Page({
     level_4: JSON.parse(JSON.stringify(level)),
     level_index_4: 0,
 
-    stage_index: 0,
-    cur_stages: JSON.parse(JSON.stringify(stages))
+    // stage_index: 0,
+    // cur_stages: JSON.parse(JSON.stringify(stages))
+
+    // 用于加载关卡信息
+    stage_show: [],
+    stages: [],
+    stage_array: [],
+    stage_index: [],
+
+    // 加载公司等级信息
+    empathy_level: JSON.parse(JSON.stringify(level)),
+    empathy_index: 0,
+    passion_level: JSON.parse(JSON.stringify(level)),
+    passion_index: 0,
+    stamina_level: JSON.parse(JSON.stringify(level)),
+    stamina_index: 0,
+    wisdom_level: JSON.parse(JSON.stringify(level)),
+    wisdom_index: 0,
+
   },
 
   /**
@@ -112,12 +153,19 @@ Page({
       cards_4: this.data.cards_4,
       multi_array_4: this.data.multi_array_4,
       index_4: this.data.index_4,
+
+      stage_show: this.data.stage_show,
+      stages: this.data.stages,
+      stage_array: this.data.stage_array,
+      stage_index: this.data.stage_index
     }
 
     data.cards_1 = JSON.parse(JSON.stringify(cards))
     data.cards_2 = JSON.parse(JSON.stringify(cards))
     data.cards_3 = JSON.parse(JSON.stringify(cards))
     data.cards_4 = JSON.parse(JSON.stringify(cards))
+
+    data.stages = JSON.parse(JSON.stringify(stage_bar))
 
     data.multi_show_1 = data.cards_1.map((item, index) => {
       // 现在可以根据属性选卡片
@@ -151,6 +199,14 @@ Page({
       return item
     })
 
+    // 根据章节选择关卡
+    data.stage_show = data.stages.map((item, index)=> {
+      if (index > 0) {
+        item = item.filter(i=>i.chapter_name === data.stages[index - 1][0].chapter_id)
+      }
+      return item
+    })
+
     data.multi_array_1 = data.multi_show_1.map(item => {
       item = item.map(i => i.name)
       return item
@@ -171,6 +227,12 @@ Page({
       return item
     })
 
+    data.stage_array = data.stage_show.map(item => {
+//      console.log(item)
+      item = item.map(i => i.name)
+      return item
+    })
+
     this.setData(data)
   },
 
@@ -178,10 +240,36 @@ Page({
  * stagePicker: 选择你正在面对的关卡
  */
   stagePicker: function (e) {
-    console.log('选择的关卡是：', this.data.cur_stages[e.detail.value])
+    console.log('选择的关卡是：', e.detail.value)
     this.setData({
       stage_index: e.detail.value
     })
+  },
+
+  stageColumnChange: function(e) {
+    console.log('1. 修改的列：', e.detail.column, '值为：', e.detail.value);
+    let data = {
+      stage_show: this.data.stage_show,
+      stage_array: this.data.stage_array,
+      stage_index: this.data.stage_index
+    }
+
+    data.stage_index[e.detail.column] = e.detail.value
+
+    for (let i = e.detail.column; i < data.stage_index.length - 1; i++) {
+      data.stage_index[i + 1] = 0;
+    }
+
+    let arr = this.data.stages;
+//    arr.sort(rarity_sort);
+
+//    console.log(data.stage_show[0]);
+
+    data.stage_show[1] = arr[1].filter(item => item.chapter_num == data.stage_show[0][data.stage_index[0]].id);
+//    console.log(data.stage_array[1]);
+    data.stage_array[1] = data.stage_show[1].map(item => item.name);
+
+    this.setData(data)    
   },
 
   /**
@@ -209,9 +297,41 @@ Page({
   },
 
   levelPicker4: function (e) {
-    console.log('第一张卡的等级是： ', this.data.level_4[e.detail.value])
+    console.log('第四张卡的等级是： ', this.data.level_4[e.detail.value])
     this.setData({
       level_index_4: e.detail.value
+    })
+  },
+
+  /**
+   * companyPicker: 选择公司等级
+   */
+
+  companyPicker1: function(e) {
+    console.log('公司感性等级：', this.data.empathy_level[e.detail.value])
+    this.setData({
+      empathy_index: e.detail.value
+    })
+  },
+
+  companyPicker2: function (e) {
+    console.log('公司热情等级：', this.data.passion_level[e.detail.value])
+    this.setData({
+      passion_index: e.detail.value
+    })
+  },
+
+  companyPicker3: function (e) {
+    console.log('公司体力等级：', this.data.stamina_level[e.detail.value])
+    this.setData({
+      stamina_index: e.detail.value
+    })
+  },
+
+  companyPicker4: function (e) {
+    console.log('公司智慧等级：', this.data.wisdom_level[e.detail.value])
+    this.setData({
+      wisdom_index: e.detail.value
     })
   },
 
@@ -246,6 +366,7 @@ Page({
     arr.sort(rarity_sort);
 
     data.multi_show_1[1] = arr[1].filter(item => item.property == data.multi_show_1[0][data.index_1[0]].id);
+
     data.multi_array_1[1] = data.multi_show_1[1].map(item => item.name);
 
     this.setData(data)
@@ -359,6 +480,14 @@ Page({
 
     this.setData(data)
   },
+
+  /**
+   * companyPicker: 用来选择公司属性的滑轮
+   * 1 - 感性 empathy
+   * 2 - 热情 passion
+   * 3 - 体力 stamina
+   * 4 - 智慧 wisdom
+   */
 
   /**
    * 生命周期函数--监听页面初次渲染完成

@@ -2,7 +2,13 @@
 <view class="calc_window">
   <view class="selection">
     <view class="selection_title">请选择关卡</view>
-    <picker bindchange="stagePicker" value="{{stage_index}}" range="{{cur_stages}}">
+    <picker 
+    mode="multiSelector" 
+    bindchange="stagePicker" 
+    bindcolumnchange="stageColumnChange" 
+    value="{{stage_index}}" 
+    range="{{stage_array}}"
+    >
       <view class="picker">
       选择关卡：{{cur_stages[stage_index]}}
       </view>
@@ -86,7 +92,31 @@
 
     <picker bindchange="levelPicker4" value="{{level_index_4}}" range="{{level_4}}">
       <view class="picker">
-      第一张卡的等级：{{level_4[level_index_4]}}
+      第四张卡的等级：{{level_4[level_index_4]}}
+      </view>
+    </picker>
+
+    <picker bindchange="companyPicker1" value="{{empathy_index}}" range="{{empathy_level}}">
+      <view class="picker">
+      公司感性等级：{{empathy_level[empathy_index]}}
+      </view>
+    </picker>
+
+    <picker bindchange="companyPicker2" value="{{passion_index}}" range="{{passion_level}}">
+      <view class="picker">
+      公司热情等级：{{passion_level[passion_index]}}
+      </view>
+    </picker>
+
+    <picker bindchange="companyPicker3" value="{{stamina_index}}" range="{{stamina_level}}">
+      <view class="picker">
+      公司体力等级：{{stamina_level[stamina_index]}}
+      </view>
+    </picker>
+
+    <picker bindchange="companyPicker4" value="{{wisdom_index}}" range="{{wisdom_level}}">
+      <view class="picker">
+      公司智慧等级：{{wisdom_level[wisdom_index]}}
       </view>
     </picker>
 
