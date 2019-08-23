@@ -471,6 +471,15 @@ Page({
    * bindPicker: 选择你想要用来计算的卡
    */
 
+  /*
+  bindPicker1: function (e) {
+    console.log('picker 1选择名称变为', this.data.cards_1[e.detail.value].card_name)
+    this.setData({
+      index_1: e.detail.value
+    })
+  },
+  */
+
   bindPicker1: function(e) {
     var card = this.data.cards_1,
       index_1 = this.data.index_1,
@@ -497,8 +506,14 @@ Page({
       for (var i = 0; i < card.length; i++) {
         if (card[i].rarity == info[0][index[0]]) {
           if(card[i].member_name == info[1][index[1]]) {
-            new_card_name.push(card[i].card_name)
+            new_card_name.push(card[i].card_name);
           }
+          else{
+            continue;
+          }
+        }
+        else{
+          continue;
         }
       };
 //      console.log(new_card_name);
@@ -520,7 +535,6 @@ Page({
     this.setData({
       info_1: info,
       index_1: e.detail.value,
-
     })
   },
 
