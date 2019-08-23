@@ -458,11 +458,29 @@ Page({
    */
 
   data: {
-
+    // 用于收集第一张卡的信息
     multi_show_1: [],
     cards_1: [],
     multi_array_1: [],
     index_1: [],
+
+    // 用于收集第二张卡的信息
+    multi_show_2: [],
+    cards_2: [],
+    multi_array_2: [],
+    index_2: [],
+
+    // 用于收集第三张卡的信息
+    multi_show_3: [],
+    cards_3: [],
+    multi_array_3: [],
+    index_3: [],
+
+    // 用于收集第四张卡的信息
+    multi_show_4: [],
+    cards_4: [],
+    multi_array_4: [],
+    index_4: [],
 
     stage_index: 0,
     cur_stages: JSON.parse(JSON.stringify(stages))
@@ -476,13 +494,30 @@ Page({
       multi_show_1: this.data.multi_show_1,
       cards_1: this.data.cards_1,
       multi_array_1: this.data.multi_array_1,
-      index_1: this.data.index_1
+      index_1: this.data.index_1,
+
+      multi_show_2: this.data.multi_show_2,
+      cards_2: this.data.cards_2,
+      multi_array_2: this.data.multi_array_2,
+      index_2: this.data.index_2,
+
+      multi_show_3: this.data.multi_show_3,
+      cards_3: this.data.cards_3,
+      multi_array_3: this.data.multi_array_3,
+      index_3: this.data.index_3,
+
+      multi_show_4: this.data.multi_show_4,
+      cards_4: this.data.cards_4,
+      multi_array_4: this.data.multi_array_4,
+      index_4: this.data.index_4
     }
 
     data.cards_1 = JSON.parse(JSON.stringify(cards))
+    data.cards_2 = JSON.parse(JSON.stringify(cards))
+    data.cards_3 = JSON.parse(JSON.stringify(cards))
+    data.cards_4 = JSON.parse(JSON.stringify(cards))
 
     data.multi_show_1 = data.cards_1.map((item, index) => {
-      // console.log(index)
       // 现在可以根据属性选卡片
       if (index > 0) {
         item = item.filter(i => i.property === data.cards_1[index - 1][0].id)
@@ -490,7 +525,46 @@ Page({
       return item
     })
 
+    data.multi_show_2 = data.cards_2.map((item, index) => {
+      // 现在可以根据属性选卡片
+      if (index > 0) {
+        item = item.filter(i => i.property === data.cards_2[index - 1][0].id)
+      }
+      return item
+    })
+
+    data.multi_show_3 = data.cards_3.map((item, index) => {
+      // 现在可以根据属性选卡片
+      if (index > 0) {
+        item = item.filter(i => i.property === data.cards_3[index - 1][0].id)
+      }
+      return item
+    })
+
+    data.multi_show_4 = data.cards_4.map((item, index) => {
+      // 现在可以根据属性选卡片
+      if (index > 0) {
+        item = item.filter(i => i.property === data.cards_4[index - 1][0].id)
+      }
+      return item
+    })
+
     data.multi_array_1 = data.multi_show_1.map(item => {
+      item = item.map(i => i.name)
+      return item
+    })
+
+    data.multi_array_2 = data.multi_show_2.map(item => {
+      item = item.map(i => i.name)
+      return item
+    })
+
+    data.multi_array_3 = data.multi_show_3.map(item => {
+      item = item.map(i => i.name)
+      return item
+    })
+
+    data.multi_array_4 = data.multi_show_4.map(item => {
       item = item.map(i => i.name)
       return item
     })
@@ -521,10 +595,9 @@ Page({
   },
 
   bindColumnChange1: function (e) {
-    console.log('修改的列：', e.detail.column, '值为：', e.detail.value);
+    console.log('1. 修改的列：', e.detail.column, '值为：', e.detail.value);
     let data = {
       multi_show_1: this.data.multi_show_1,
-//      cards_1: this.data.cards_1,
       multi_array_1: this.data.multi_array_1,
       index_1: this.data.index_1
     }
@@ -535,20 +608,124 @@ Page({
     }
 
     // 更新第二列卡名
+    // 先按照稀有度排序
     let arr = this.data.cards_1;
     arr.sort(rarity_sort);
-    for (let i = e.detail.column; i < data.index_1.length - 1; i++) {
-      data.multi_show_1[i+1] = arr[i+1].filter(item => item.property == data.multi_show_1[i][data.index_1[i]].id);
-//      data.multi_show_1[i+1].sort(rarity_sort);
-      data.multi_array_1[i+1] = data.multi_show_1[i+1].map(i => i.name);
-    }
+
+    data.multi_show_1[1] = arr[1].filter(item => item.property == data.multi_show_1[0][data.index_1[0]].id);
+    data.multi_array_1[1] = data.multi_show_1[1].map(item => item.name);
 
     this.setData(data)
   },
 
+  /**
+   * 是第三个picker
+   * 我捋错了谁来救救我
+   */
 
+  bindPicker3: function (e) {
+    console.log('picker 3 数值改变为：', e.detail.value)
 
+    this.setData({
+      index_3: e.detail.value
+    })
+  },
 
+  bindColumnChange3: function (e) {
+    console.log('3. 修改的列：', e.detail.column, '值为：', e.detail.value);
+    let data = {
+      multi_show_3: this.data.multi_show_3,
+      multi_array_3: this.data.multi_array_3,
+      index_3: this.data.index_3
+    }
+    data.index_3[e.detail.column] = e.detail.value;
+    //  改变前一列之后后面会重置到第0项
+    for (let i = e.detail.column; i < data.index_3.length - 1; i++) {
+      data.index_3[i + 1] = 0;
+    }
+
+    // 更新第二列卡名
+    // 先按照稀有度排序
+    let arr = this.data.cards_3;
+    arr.sort(rarity_sort);
+
+    data.multi_show_3[1] = arr[1].filter(item => item.property == data.multi_show_3[0][data.index_3[0]].id);
+    data.multi_array_3[1] = data.multi_show_3[1].map(item => item.name);
+
+    this.setData(data)
+  },
+
+  /**
+   * 这才是第二个picker
+   */
+
+  bindPicker2: function (e) {
+    console.log('picker 2 数值改变为：', e.detail.value)
+
+    this.setData({
+      index_2: e.detail.value
+    })
+  },
+
+  bindColumnChange2: function (e) {
+    console.log('2. 修改的列：', e.detail.column, '值为：', e.detail.value);
+    let data = {
+      multi_show_2: this.data.multi_show_2,
+      multi_array_2: this.data.multi_array_2,
+      index_2: this.data.index_2
+    }
+    data.index_2[e.detail.column] = e.detail.value;
+    //  改变前一列之后后面会重置到第0项
+    for (let i = e.detail.column; i < data.index_2.length - 1; i++) {
+      data.index_2[i + 1] = 0;
+    }
+
+    // 更新第二列卡名
+    // 先按照稀有度排序
+    let arr = this.data.cards_2;
+    arr.sort(rarity_sort);
+
+    data.multi_show_2[1] = arr[1].filter(item => item.property == data.multi_show_2[0][data.index_2[0]].id);
+    data.multi_array_2[1] = data.multi_show_2[1].map(item => item.name);
+
+    this.setData(data)
+  },
+
+  /**
+   * 这是第四个picker
+   */
+
+  bindPicker4: function (e) {
+    console.log('picker 4 数值改变为：', e.detail.value)
+
+    this.setData({
+      index_4: e.detail.value
+    })
+  },
+
+  bindColumnChange4: function (e) {
+    console.log('4. 修改的列：', e.detail.column, '值为：', e.detail.value);
+    let data = {
+      multi_show_4: this.data.multi_show_4,
+      multi_array_4: this.data.multi_array_4,
+      index_4: this.data.index_4
+    }
+    data.index_4[e.detail.column] = e.detail.value;
+    //  改变前一列之后后面会重置到第0项
+    for (let i = e.detail.column; i < data.index_4.length - 1; i++) {
+      data.index_4[i + 1] = 0;
+    }
+
+    // 更新第二列卡名
+    // 先按照稀有度排序
+    let arr = this.data.cards_4;
+    arr.sort(rarity_sort);
+
+    data.multi_show_4[1] = arr[1].filter(item => item.property == data.multi_show_4[0][data.index_4[0]].id);
+    data.multi_array_4[1] = data.multi_show_4[1].map(item => item.name);
+
+    this.setData(data)
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成

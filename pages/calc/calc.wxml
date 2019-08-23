@@ -22,5 +22,51 @@
 
       </view>
     </picker>
+
+    <picker 
+    mode="multiSelector" 
+    bindchange="bindPicker2" 
+    bindcolumnchange="bindColumnChange2" 
+    value="{{index_2}}" 
+    range="{{multi_array_2}}"
+    >
+      <view class="picker">
+
+        第二张卡：
+        {{multi_array_2[1][index_2[1]]}}
+
+      </view>
+    </picker>
+
+    <picker 
+    mode="multiSelector" 
+    bindchange="bindPicker3" 
+    bindcolumnchange="bindColumnChange3" 
+    value="{{index_3}}" 
+    range="{{multi_array_3}}"
+    >
+      <view class="picker">
+
+        第三张卡：
+        {{multi_array_3[1][index_3[1]]}}
+
+      </view>
+    </picker>
+
+    <picker 
+    mode="multiSelector" 
+    bindchange="bindPicker4" 
+    bindcolumnchange="bindColumnChange4" 
+    value="{{index_4}}" 
+    range="{{multi_array_4}}"
+    >
+      <view class="picker">
+
+        第四张卡：
+        {{multi_array_4[1][index_4[1]]}}
+
+      </view>
+    </picker>
+
   </view>
 </view>
