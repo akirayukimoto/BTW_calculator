@@ -13,29 +13,60 @@
     bindchange="bindPicker1" 
     bindcolumnchange="bindColumnChange1" 
     value="{{index_1}}" 
-    range="{{info_1}}"
+    range="{{multi_array_1}}"
     >
       <view class="picker">
 
         第一张卡：
-        {{info_1[0][index_1[0]]}},{{info_1[1][index_1[1]]}},{{info_1[2][index_1[2]]}}
+        {{multi_array_1[1][index_1[1]]}}
 
       </view>
     </picker>
-    <picker bindchange="bindPicker2" value="{{index_2}}" range="{{cards_2}}" range-key="card_name">
+
+    <picker 
+    mode="multiSelector" 
+    bindchange="bindPicker2" 
+    bindcolumnchange="bindColumnChange2" 
+    value="{{index_2}}" 
+    range="{{multi_array_2}}"
+    >
       <view class="picker">
-        第二张卡：{{cards_2[index_2[0]].card_name}}
+
+        第二张卡：
+        {{multi_array_2[1][index_2[1]]}}
+
       </view>
     </picker>
-    <picker bindchange="bindPicker3" value="{{index_3}}" range="{{cards_3}}" range-key="card_name">
+
+    <picker 
+    mode="multiSelector" 
+    bindchange="bindPicker3" 
+    bindcolumnchange="bindColumnChange3" 
+    value="{{index_3}}" 
+    range="{{multi_array_3}}"
+    >
       <view class="picker">
-        第三张卡：{{cards_3[index_3[0]].card_name}}
+
+        第三张卡：
+        {{multi_array_3[1][index_3[1]]}}
+
       </view>
     </picker>
-    <picker bindchange="bindPicker4" value="{{index_4}}" range="{{cards_4}}" range-key="card_name">
+
+    <picker 
+    mode="multiSelector" 
+    bindchange="bindPicker4" 
+    bindcolumnchange="bindColumnChange4" 
+    value="{{index_4}}" 
+    range="{{multi_array_4}}"
+    >
       <view class="picker">
-        第四张卡：{{cards_4[index_4[0]].card_name}}
+
+        第四张卡：
+        {{multi_array_4[1][index_4[1]]}}
+
       </view>
     </picker>
+
   </view>
 </view>
