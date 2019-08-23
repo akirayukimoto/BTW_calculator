@@ -33,7 +33,7 @@ var stages = [
 
 var level = []
 
-for (var i = 0; i < 51; i++) {
+for (var i = 1; i < 51; i++) {
   level.push(i);
 }
 
@@ -52,30 +52,33 @@ Page({
    */
 
   data: {
-
     // 用于收集第一张卡的信息
     multi_show_1: [],
     cards_1: [],
     multi_array_1: [],
     index_1: [],
+    level_1: [],
 
     // 用于收集第二张卡的信息
     multi_show_2: [],
     cards_2: [],
     multi_array_2: [],
     index_2: [],
+    level_2: [],
 
     // 用于收集第三张卡的信息
     multi_show_3: [],
     cards_3: [],
     multi_array_3: [],
     index_3: [],
+    level_3: [],
 
     // 用于收集第四张卡的信息
     multi_show_4: [],
     cards_4: [],
     multi_array_4: [],
     index_4: [],
+    level_4: [],
 
     stage_index: 0,
     cur_stages: JSON.parse(JSON.stringify(stages))
@@ -104,13 +107,23 @@ Page({
       multi_show_4: this.data.multi_show_4,
       cards_4: this.data.cards_4,
       multi_array_4: this.data.multi_array_4,
-      index_4: this.data.index_4
+      index_4: this.data.index_4,
+
+      level_1: this.data.level_1,
+      level_2: this.data.level_2,
+      level_3: this.data.level_3,
+      level_4: this.data.level_4,
     }
 
     data.cards_1 = JSON.parse(JSON.stringify(cards))
     data.cards_2 = JSON.parse(JSON.stringify(cards))
     data.cards_3 = JSON.parse(JSON.stringify(cards))
     data.cards_4 = JSON.parse(JSON.stringify(cards))
+
+    data.level_1 = JSON.parse(JSON.stringify(level))
+    data.level_1 = JSON.parse(JSON.stringify(level))
+    data.level_1 = JSON.parse(JSON.stringify(level))
+    data.level_1 = JSON.parse(JSON.stringify(level))
 
     data.multi_show_1 = data.cards_1.map((item, index) => {
       // 现在可以根据属性选卡片
