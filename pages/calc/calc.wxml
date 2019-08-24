@@ -10,9 +10,10 @@
     range="{{stage_array}}"
     >
       <view class="picker">
-      选择关卡：{{cur_stages[stage_index]}}
+      选择关卡：第{{stage_array[0][stage_index[0]]}}章 第{{stage_array[1][stage_index[1]]}}关
       </view>
     </picker>
+
     <view class="selection_title">请选择卡片</view>
     <picker 
     mode="multiSelector" 
@@ -119,6 +120,8 @@
       公司智慧等级：{{wisdom_level[wisdom_index]}}
       </view>
     </picker>
+
+    <button bindtap="calculateCard">开始计算</button>
 
   </view>
 </view>

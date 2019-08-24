@@ -62,13 +62,155 @@ for (var i = 1; i < 51; i++) {
   level.push(i);
 }
 
+// 计算卡面每级成长值用的array
+var rarity_growth = [
+  [0, 0], [24, 16], [30, 20], [35, 23], [39, 26], [45, 30]
+]
+
+/**
+ * calcCard: 用于计算当前卡面数值
+ */
+
+function calcCard(card, level) {
+//  var card_values = [];
+  var empathy_value = 0;
+  var passion_value = 0;
+  var stamina_value = 0;
+  var wisdom_value = 0;
+
+  console.log(rarity_growth[card.rarity]);
+
+  switch(card.property) {
+    case 1:
+      empathy_value = card.empathy + (level - 1) * rarity_growth[card.rarity][0];
+      passion_value = card.passion + (level - 1) * rarity_growth[card.rarity][1];
+      stamina_value = card.stamina + (level - 1) * rarity_growth[card.rarity][1];
+      wisdom_value = card.wisdom + (level - 1) * rarity_growth[card.rarity][1];
+      break;
+    case 2:
+      empathy_value = card.empathy + (level - 1) * rarity_growth[card.rarity][1];
+      passion_value = card.passion + (level - 1) * rarity_growth[card.rarity][0];
+      stamina_value = card.stamina + (level - 1) * rarity_growth[card.rarity][1];
+      wisdom_value = card.wisdom + (level - 1)* rarity_growth[card.rarity][1];
+      break;
+    case 3:
+      empathy_value = card.empathy + (level - 1) * rarity_growth[card.rarity][1];
+      passion_value = card.passion + (level - 1) * rarity_growth[card.rarity][1];
+      stamina_value = card.stamina + (level - 1) * rarity_growth[card.rarity][0];
+      wisdom_value = card.wisdom + (level - 1) * rarity_growth[card.rarity][1];
+      break;
+    case 4:
+      empathy_value = card.empathy + (level - 1) * rarity_growth[card.rarity][1];
+      passion_value = card.passion + (level - 1) * rarity_growth[card.rarity][1];
+      stamina_value = card.stamina + (level - 1) * rarity_growth[card.rarity][1];
+      wisdom_value = card.wisdom + (level - 1) * rarity_growth[card.rarity][0];
+      break;
+  }
+  return [empathy_value, passion_value, stamina_value, wisdom_value];
+}
+
+/**
+ * calcCompany: 计算公司的数值
+ */
+
+function calcCompany(e_level, p_level, s_level, w_level) {
+  var empathy_value = 100 + (e_level - 1) * 13;
+  var passion_value = 100 + (p_level - 1) * 13;
+  var stamina_value = 100 + (s_level - 1) * 13;
+  var wisdom_value = 100 + (w_level - 1) * 13;
+
+  return [empathy_value, passion_value, stamina_value, wisdom_value];
+}
+
+/**
+ * transValue: 将属性名称转化为indices
+ */
+
+function transValue(card_property) {
+  if (card_property == "empathy") {
+    return 1;
+  }
+  else if (card_property == "passion") {
+    return 2;
+  }
+  else if (card_property == "stamina") {
+    return 3;
+  }
+  else {
+    return 4;
+  }
+}
+
 /**
  * rarity_sort: 将列里的outcome按照稀有度排序
+ * 用于排序的辅助函数
  */
 
 function rarity_sort(x, y) {
   return x.rarity - y.rarity
 }
+
+/**
+ * find_card_by_name: 通过card_name提取卡面信息
+ */
+
+function find_card_by_name(cards_name, info) {
+  let k = 0;
+  for (let i = 0; i < info.length; i++) {
+    if (info[i].name == cards_name) {
+      k = i;
+      break;
+    }
+  }
+  if (k != info.length) {
+    return info[k];
+  }
+  else {
+    return null;
+  }
+}
+
+/**
+ * find_info_by_stage: 根据stage数获得关卡要求
+ * 找到的话输出该项目
+ * 否则的话输出null
+ */
+
+function find_info_by_stage(chapter_num, stage_num, info) {
+  let k = 0;
+  for (let i = 0; i < info.length; i++) {
+    if (info[i].chapter_num == chapter_num && info[i].name == stage_num) {
+      k = i;
+      break;
+    }
+  }
+  if (k != info.length) {
+    return info[k];
+  }
+  else {
+    return null;
+  }
+}
+
+/**
+ * find_equi_by_index: 根据index获得公式
+ */
+function find_equi_by_index(equi_id, info) {
+  let k = 0;
+  for (let i = 0; i < info.length; i++) {
+    if (info[i].id == equi_id) {
+      k = i;
+      break;
+    }
+  }
+  if (k != info.length) {
+    return info[k];
+  }
+  else {
+    return null;
+  }
+}
+
 
 Page({
 
@@ -127,6 +269,9 @@ Page({
     stamina_index: 0,
     wisdom_level: JSON.parse(JSON.stringify(level)),
     wisdom_index: 0,
+
+    // 加载公式信息
+    equation: JSON.parse(JSON.stringify(stage_equi.stage_percent))
 
   },
 
@@ -262,12 +407,9 @@ Page({
     }
 
     let arr = this.data.stages;
-//    arr.sort(rarity_sort);
-
-//    console.log(data.stage_show[0]);
 
     data.stage_show[1] = arr[1].filter(item => item.chapter_num == data.stage_show[0][data.stage_index[0]].id);
-//    console.log(data.stage_array[1]);
+
     data.stage_array[1] = data.stage_show[1].map(item => item.name);
 
     this.setData(data)    
@@ -484,6 +626,174 @@ Page({
     data.multi_array_4[1] = data.multi_show_4[1].map(item => item.name);
 
     this.setData(data)
+  },
+
+  /**
+   * calculateCard: 单击之后显示卡面计算结果
+   */
+  calculateCard: function() {
+//    console.log(this.data.multi_array_1[1][this.data.index_1[1]]);
+    let data = {
+      multi_array_1: this.data.multi_array_1,
+      multi_array_2: this.data.multi_array_2,
+      multi_array_3: this.data.multi_array_3,
+      multi_array_4: this.data.multi_array_4,
+
+      index_1: this.data.index_1,
+      index_2: this.data.index_2,
+      index_3: this.data.index_3,
+      index_4: this.data.index_4,
+
+      level_1: this.data.level_1,
+      level_2: this.data.level_2,
+      level_3: this.data.level_3,
+      level_4: this.data.level_4,
+
+      level_index_1: this.data.level_index_1,
+      level_index_2: this.data.level_index_2,
+      level_index_3: this.data.level_index_3,
+      level_index_4: this.data.level_index_4,
+
+      stage_array: this.data.stage_array,
+      stage_index: this.data.stage_index,
+
+      empathy_level: this.data.empathy_level,
+      empathy_index: this.data.empathy_index,
+      passion_level: this.data.passion_level,
+      passion_index: this.data.passion_index,
+      stamina_level: this.data.stamina_level,
+      stamina_index: this.data.stamina_index,
+      wisdom_level: this.data.wisdom_level,
+      wisdom_index: this.data.wisdom_index,
+    }
+
+    var card_name_array = [];
+    var card_level_array = [];
+
+    var card_name_1 = data.multi_array_1[1][data.index_1[1]];
+    var card_name_2 = data.multi_array_2[1][data.index_2[1]];
+    var card_name_3 = data.multi_array_3[1][data.index_3[1]];
+    var card_name_4 = data.multi_array_4[1][data.index_4[1]];
+
+    var card_level_1 = data.level_1[data.level_index_1];
+    var card_level_2 = data.level_2[data.level_index_2];
+    var card_level_3 = data.level_3[data.level_index_3];
+    var card_level_4 = data.level_4[data.level_index_4];
+
+    if (card_name_1 != null) {
+      card_name_array.push(card_name_1);
+      card_level_array.push(card_level_1);
+    }
+    if (card_name_2 != null) {
+      card_name_array.push(card_name_2);
+      card_level_array.push(card_level_2);
+    }
+    if (card_name_3 != null) {
+      card_name_array.push(card_name_3);
+      card_level_array.push(card_level_3);
+    }
+    if (card_name_4 != null) {
+      card_name_array.push(card_name_4);
+      card_level_array.push(card_level_4);
+    }
+
+    // 此处需要解决问题：未输入完整关卡名的时候需要报错
+    // 可以的话做个弹窗
+    var chapter_num = data.stage_index[0] + 1;
+    var stage_num = data.stage_array[1][data.stage_index[1]];
+    var using_stage_info = find_info_by_stage(chapter_num, stage_num, stage_info.stage_info);
+    var using_stage_equi = find_equi_by_index(using_stage_info.equi_id, stage_equi.stage_percent);
+
+    // 将属性权重顺序记录在calc_id中
+    // index代表权重，value表示属性位置
+    var calc_ids = [];
+    calc_ids.push(transValue(using_stage_info.property_1) - 1);
+    calc_ids.push(transValue(using_stage_info.property_2) - 1);
+    calc_ids.push(transValue(using_stage_info.property_3) - 1);
+    calc_ids.push(transValue(using_stage_info.property_4) - 1);
+
+    console.log(calc_ids);
+
+    // 此处或需要解决问题：当输入卡数小于所需卡数的时候需要跳出提示
+    // 森你会做弹窗吗呜呜呜
+    if (card_name_array.length >= using_stage_equi.card_num) {
+      // 成功的话进入此block
+      // 提取卡片信息
+      var using_card_info = [];
+      for (let i = 0; i < card_name_array.length; i++) {
+        var temp = find_card_by_name(card_name_array[i], cards_info.cards_info);
+        using_card_info.push(temp);
+      }
+//      console.log(using_card_info);
+
+      // 丢人，再循环一次，用来算卡数值
+      var recent_values = [];
+      for (let i = 0; i < using_card_info.length; i++) {
+//        console.log(card_level_array[i]);
+        var res = calcCard(using_card_info[i], card_level_array[i]);
+        recent_values.push(res);
+      }
+
+      console.log('当前卡值为: ', recent_values);
+
+      // 再循环一次，计算卡面得分
+      var total_score = 0;
+      // 导入算式权重
+      var prop_1 = using_stage_equi.property_1;
+      var prop_2 = using_stage_equi.property_2;
+      var prop_3 = using_stage_equi.property_3;
+      var prop_4 = using_stage_equi.property_4;
+
+      for (let i = 0; i < recent_values.length; i++) {
+        // 导入当前卡牌值
+        var temp = recent_values[i];
+        var card_score =
+          temp[calc_ids[0]] * prop_1 
+          + temp[calc_ids[1]] * prop_2
+          + temp[calc_ids[2]] * prop_3
+          + temp[calc_ids[3]] * prop_4;
+        console.log('当前卡在此关卡的分数为：', card_score);
+
+        total_score = total_score + card_score;
+      }
+
+      console.log('卡牌合计总分为：', total_score);
+
+      // 计算公司数值
+      var company_value = calcCompany(
+        data.empathy_level[data.empathy_index],
+        data.passion_level[data.passion_index],
+        data.stamina_level[data.stamina_index],
+        data.wisdom_level[data.wisdom_index],
+      );
+
+      console.log('公司数值为：', company_value);
+
+      var company_score = company_value[calc_ids[0]] * prop_1
+        + company_value[calc_ids[1]] * prop_2
+        + company_value[calc_ids[2]] * prop_3
+        + company_value[calc_ids[3]] * prop_4;
+
+      console.log('公司得分为：', company_score);
+
+      total_score = total_score + company_score;
+      console.log('您的总分为：', total_score);
+
+      if (total_score >= using_stage_info.minimum_passing_score) {
+        console.log('恭喜您过关！');
+      }
+      else {
+        console.log('很遗憾没能过关，请提升卡牌等级或者公司等级。');
+      }
+
+    }
+    else {
+      // 失败之后进入此block
+      // 最好有弹窗提示
+      console.log('输入卡数不够，请继续输入');
+    }
+
+
   },
 
   /**

@@ -123,7 +123,7 @@ var stage = [{
   },
   {
     "id": 10,
-    "equi_id": 2,
+    "equi_id": 3,
     "chapter_num": 1,
     "name": "20",
     "stage_name": "1-20",
