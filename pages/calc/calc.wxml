@@ -121,6 +121,8 @@
       </view>
     </picker>
 
+    <view>总分为: {{ final_score }}</view>
+    <view>{{ message }}</view>
     <button bindtap="calculateCard">开始计算</button>
 
   </view>

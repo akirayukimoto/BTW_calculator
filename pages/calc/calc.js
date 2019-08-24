@@ -58,8 +58,14 @@ var stage_bar = [[
 
 var level = []
 
-for (var i = 1; i < 51; i++) {
+for (var i = 50; i >= 1; i--) {
   level.push(i);
+}
+
+var company_level = []
+
+for (var i = 1; i < 51; i++) {
+  company_level.push(i);
 }
 
 // 计算卡面每级成长值用的array
@@ -261,18 +267,22 @@ Page({
     stage_index: [],
 
     // 加载公司等级信息
-    empathy_level: JSON.parse(JSON.stringify(level)),
+    empathy_level: JSON.parse(JSON.stringify(company_level)),
     empathy_index: 0,
-    passion_level: JSON.parse(JSON.stringify(level)),
+    passion_level: JSON.parse(JSON.stringify(company_level)),
     passion_index: 0,
-    stamina_level: JSON.parse(JSON.stringify(level)),
+    stamina_level: JSON.parse(JSON.stringify(company_level)),
     stamina_index: 0,
-    wisdom_level: JSON.parse(JSON.stringify(level)),
+    wisdom_level: JSON.parse(JSON.stringify(company_level)),
     wisdom_index: 0,
 
     // 加载公式信息
-    equation: JSON.parse(JSON.stringify(stage_equi.stage_percent))
+    equation: JSON.parse(JSON.stringify(stage_equi.stage_percent)),
 
+    // 最后得分
+    min_score: 0,
+    final_score: 0,
+    message: "等待结果"
   },
 
   /**
@@ -633,6 +643,8 @@ Page({
    */
   calculateCard: function() {
 //    console.log(this.data.multi_array_1[1][this.data.index_1[1]]);
+    var total_score = 0;
+    var msg = "等待结果";
     let data = {
       multi_array_1: this.data.multi_array_1,
       multi_array_2: this.data.multi_array_2,
@@ -701,6 +713,7 @@ Page({
     // 可以的话做个弹窗
     var chapter_num = data.stage_index[0] + 1;
     var stage_num = data.stage_array[1][data.stage_index[1]];
+    console.log('现在所在的关卡是：', chapter_num, stage_num);
     var using_stage_info = find_info_by_stage(chapter_num, stage_num, stage_info.stage_info);
     var using_stage_equi = find_equi_by_index(using_stage_info.equi_id, stage_equi.stage_percent);
 
@@ -716,11 +729,16 @@ Page({
 
     // 此处或需要解决问题：当输入卡数小于所需卡数的时候需要跳出提示
     // 森你会做弹窗吗呜呜呜
-    if (card_name_array.length >= using_stage_equi.card_num) {
+    if (card_name_array.length > 0) {
       // 成功的话进入此block
       // 提取卡片信息
+
+      var using_len = using_stage_equi.card_num;
+      if (card_name_array.length < using_stage_equi.card_num) {
+        using_len = card_name_array;
+      }
       var using_card_info = [];
-      for (let i = 0; i < card_name_array.length; i++) {
+      for (let i = 0; i < using_len; i++) {
         var temp = find_card_by_name(card_name_array[i], cards_info.cards_info);
         using_card_info.push(temp);
       }
@@ -737,7 +755,7 @@ Page({
       console.log('当前卡值为: ', recent_values);
 
       // 再循环一次，计算卡面得分
-      var total_score = 0;
+//      var total_score = 0;
       // 导入算式权重
       var prop_1 = using_stage_equi.property_1;
       var prop_2 = using_stage_equi.property_2;
@@ -781,18 +799,23 @@ Page({
 
       if (total_score >= using_stage_info.minimum_passing_score) {
         console.log('恭喜您过关！');
+        msg = "恭喜您过关！";
+        
       }
       else {
         console.log('很遗憾没能过关，请提升卡牌等级或者公司等级。');
+        msg = "很遗憾没能过关，请提升卡牌等级或者公司等级。";
       }
-
+      this.setData({
+        final_score: total_score,
+        message: msg
+      })
     }
     else {
       // 失败之后进入此block
       // 最好有弹窗提示
-      console.log('输入卡数不够，请继续输入');
+      console.log('请输入要用的卡');
     }
-
 
   },
 

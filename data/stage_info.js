@@ -64,7 +64,7 @@ var stage = [{
   {
     "id": 5,
     "equi_id": 2,
-    "chapter_num": 1,
+    "chapter_num": 3,
     "name": "10",
     "stage_name": "1-10",
     "property_1": "passion",
@@ -75,7 +75,7 @@ var stage = [{
   },
   {
     "id": 6,
-    "equi_id": 2,
+    "equi_id": 3,
     "chapter_num": 1,
     "name": "12",
     "stage_name": "1-12",
