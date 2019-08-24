@@ -1,14 +1,4 @@
-var stage = [{
-    "id": 0,
-    "chapter_num": 0,
-    "name": "0",
-    "stage_name": " ",
-    "property_1": " ",
-    "property_2": " ",
-    "property_3": " ",
-    "property_4": " ",
-    "minimum_passing_score":0
-  },
+var stage = [
   //  Chapter 1，共10关
   //  放置卡数：1（1-8结束）,2(1-10开始)
   //  因为章节计算的特殊性所以在1-8之前只有property_1会有倍数计算
@@ -727,7 +717,7 @@ var stage = [{
   },
   {
     "id": 59,
-    "equi_id": 6,
+    "equi_id": 7,
     "chapter_num": 5,
     "name": "20",
     "stage_name": "5-20",

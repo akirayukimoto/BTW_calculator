@@ -160,10 +160,11 @@ function rarity_sort(x, y) {
  * find_card_by_name: 通过card_name提取卡面信息
  */
 
-function find_card_by_name(cards_name, info) {
+function find_card_by_name(card_name, info) {
   let k = 0;
   for (let i = 0; i < info.length; i++) {
-    if (info[i].name == cards_name) {
+    if (info[i].name == card_name) {
+      console.log('找到的卡是: ', info[i].name);
       k = i;
       break;
     }
@@ -407,7 +408,8 @@ Page({
     let data = {
       stage_show: this.data.stage_show,
       stage_array: this.data.stage_array,
-      stage_index: this.data.stage_index
+      stage_index: this.data.stage_index,
+//      min_score: this.data.min_score
     }
 
     data.stage_index[e.detail.column] = e.detail.value
@@ -632,6 +634,8 @@ Page({
     let arr = this.data.cards_4;
     arr.sort(rarity_sort);
 
+    console.log(arr);
+
     data.multi_show_4[1] = arr[1].filter(item => item.property == data.multi_show_4[0][data.index_4[0]].id);
     data.multi_array_4[1] = data.multi_show_4[1].map(item => item.name);
 
@@ -709,6 +713,8 @@ Page({
       card_level_array.push(card_level_4);
     }
 
+    console.log('现在选择的卡是: ', card_name_array)
+
     // 此处需要解决问题：未输入完整关卡名的时候需要报错
     // 可以的话做个弹窗
     var chapter_num = data.stage_index[0] + 1;
@@ -742,7 +748,7 @@ Page({
         var temp = find_card_by_name(card_name_array[i], cards_info.cards_info);
         using_card_info.push(temp);
       }
-//      console.log(using_card_info);
+      console.log('现在使用的卡面信息是：', using_card_info);
 
       // 丢人，再循环一次，用来算卡数值
       var recent_values = [];
@@ -775,6 +781,8 @@ Page({
         total_score = total_score + card_score;
       }
 
+      total_score = Math.round(total_score);
+
       console.log('卡牌合计总分为：', total_score);
 
       // 计算公司数值
@@ -792,6 +800,8 @@ Page({
         + company_value[calc_ids[2]] * prop_3
         + company_value[calc_ids[3]] * prop_4;
 
+      company_score = Math.round(company_score);
+
       console.log('公司得分为：', company_score);
 
       total_score = total_score + company_score;
@@ -808,6 +818,7 @@ Page({
       }
       this.setData({
         final_score: total_score,
+        min_score: using_stage_info.minimum_passing_score,
         message: msg
       })
     }

@@ -120,7 +120,7 @@
       公司智慧等级：{{wisdom_level[wisdom_index]}}
       </view>
     </picker>
-
+    <view>本关最低要求分数是: {{ min_score }}</view>
     <view>总分为: {{ final_score }}</view>
     <view>{{ message }}</view>
     <button bindtap="calculateCard">开始计算</button>
