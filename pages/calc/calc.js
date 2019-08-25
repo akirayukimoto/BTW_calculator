@@ -259,6 +259,14 @@ Page({
     level_4: JSON.parse(JSON.stringify(level)),
     level_index_4: 0,
 
+    // 用于收集第五张卡的信息
+    multi_show_5: [],
+    cards_5: [],
+    multi_array_5: [],
+    index_5: [],
+    level_5: JSON.parse(JSON.stringify(level)),
+    level_index_5: 0,
+
     // stage_index: 0,
     // cur_stages: JSON.parse(JSON.stringify(stages))
 
@@ -312,6 +320,11 @@ Page({
       multi_array_4: this.data.multi_array_4,
       index_4: this.data.index_4,
 
+      multi_show_5: this.data.multi_show_5,
+      cards_5: this.data.cards_5,
+      multi_array_5: this.data.multi_array_5,
+      index_5: this.data.index_5,
+
       stage_show: this.data.stage_show,
       stages: this.data.stages,
       stage_array: this.data.stage_array,
@@ -322,6 +335,7 @@ Page({
     data.cards_2 = JSON.parse(JSON.stringify(cards))
     data.cards_3 = JSON.parse(JSON.stringify(cards))
     data.cards_4 = JSON.parse(JSON.stringify(cards))
+    data.cards_5 = JSON.parse(JSON.stringify(cards))
 
     data.stages = JSON.parse(JSON.stringify(stage_bar))
 
@@ -357,6 +371,13 @@ Page({
       return item
     })
 
+    data.multi_show_5 = data.cards_5.map((item, index) => {
+      if (index > 0) {
+        item = item.filter(i => i.property === data.cards_5[index - 1][0].id)
+      }
+      return item
+    })
+
     // 根据章节选择关卡
     data.stage_show = data.stages.map((item, index)=> {
       if (index > 0) {
@@ -381,6 +402,11 @@ Page({
     })
 
     data.multi_array_4 = data.multi_show_4.map(item => {
+      item = item.map(i => i.name)
+      return item
+    })
+
+    data.multi_array_5 = data.multi_show_5.map(item => {
       item = item.map(i => i.name)
       return item
     })
@@ -456,6 +482,13 @@ Page({
     console.log('第四张卡的等级是： ', this.data.level_4[e.detail.value])
     this.setData({
       level_index_4: e.detail.value
+    })
+  },
+
+  levelPicker5: function (e) {
+    console.log('第四张卡的等级是： ', this.data.level_5[e.detail.value])
+    this.setData({
+      level_index_5: e.detail.value
     })
   },
 
@@ -638,6 +671,44 @@ Page({
 
     data.multi_show_4[1] = arr[1].filter(item => item.property == data.multi_show_4[0][data.index_4[0]].id);
     data.multi_array_4[1] = data.multi_show_4[1].map(item => item.name);
+
+    this.setData(data)
+  },
+
+  /**
+   * 这是第五个picker
+   */
+
+  bindPicker5: function (e) {
+    console.log('picker 5 数值改变为：', e.detail.value)
+
+    this.setData({
+      index_5: e.detail.value
+    })
+  },
+
+  bindColumnChange5: function (e) {
+    console.log('5. 修改的列：', e.detail.column, '值为：', e.detail.value);
+    let data = {
+      multi_show_5: this.data.multi_show_5,
+      multi_array_5: this.data.multi_array_5,
+      index_5: this.data.index_5
+    }
+    data.index_5[e.detail.column] = e.detail.value;
+    //  改变前一列之后后面会重置到第0项
+    for (let i = e.detail.column; i < data.index_5.length - 1; i++) {
+      data.index_5[i + 1] = 0;
+    }
+
+    // 更新第二列卡名
+    // 先按照稀有度排序
+    let arr = this.data.cards_5;
+    arr.sort(rarity_sort);
+
+    console.log(arr);
+
+    data.multi_show_5[1] = arr[1].filter(item => item.property == data.multi_show_5[0][data.index_5[0]].id);
+    data.multi_array_5[1] = data.multi_show_5[1].map(item => item.name);
 
     this.setData(data)
   },

@@ -97,6 +97,27 @@
       </view>
     </picker>
 
+    <picker 
+    mode="multiSelector" 
+    bindchange="bindPicker5" 
+    bindcolumnchange="bindColumnChange5" 
+    value="{{index_5}}" 
+    range="{{multi_array_5}}"
+    >
+      <view class="picker">
+
+        第五张卡：
+        {{multi_array_5[1][index_5[1]]}}
+
+      </view>
+    </picker>
+
+    <picker bindchange="levelPicker5" value="{{level_index_5}}" range="{{level_5}}">
+      <view class="picker">
+      第五张卡的等级：{{level_5[level_index_5]}}
+      </view>
+    </picker>
+
     <picker bindchange="companyPicker1" value="{{empathy_index}}" range="{{empathy_level}}">
       <view class="picker">
       公司感性等级：{{empathy_level[empathy_index]}}
