@@ -53,8 +53,8 @@ var stage = [
   },
   {
     "id": 5,
-    "equi_id": 2,
-    "chapter_num": 3,
+    "equi_id": 3,
+    "chapter_num": 1,
     "name": "10",
     "stage_name": "1-10",
     "property_1": "passion",

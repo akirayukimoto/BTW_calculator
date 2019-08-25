@@ -162,9 +162,10 @@ function rarity_sort(x, y) {
 
 function find_card_by_name(card_name, info) {
   let k = 0;
+//  console.log('输入卡名：', card_name);
   for (let i = 0; i < info.length; i++) {
     if (info[i].name == card_name) {
-      console.log('找到的卡是: ', info[i].name);
+//      console.log('找到的卡是: ', info[i].name);
       k = i;
       break;
     }
@@ -500,7 +501,6 @@ Page({
 
   bindPicker1: function (e) {
     console.log('picker 1 数值改变为：', e.detail.value)
-
     this.setData({
       index_1: e.detail.value
     })
@@ -739,12 +739,18 @@ Page({
       // 成功的话进入此block
       // 提取卡片信息
 
-      var using_len = using_stage_equi.card_num;
+      var using_len = 0;
       if (card_name_array.length < using_stage_equi.card_num) {
-        using_len = card_name_array;
+        using_len = card_name_array.length;
       }
+      else {
+        using_len = using_stage_equi.card_num;
+      }
+
+      console.log('要使用的卡数为：', using_len);
       var using_card_info = [];
       for (let i = 0; i < using_len; i++) {
+        console.log('输入卡名：', card_name_array[i]);
         var temp = find_card_by_name(card_name_array[i], cards_info.cards_info);
         using_card_info.push(temp);
       }
@@ -776,7 +782,7 @@ Page({
           + temp[calc_ids[1]] * prop_2
           + temp[calc_ids[2]] * prop_3
           + temp[calc_ids[3]] * prop_4;
-        console.log('当前卡在此关卡的分数为：', card_score);
+//        console.log('当前卡在此关卡的分数为：', card_score);
 
         total_score = total_score + card_score;
       }
